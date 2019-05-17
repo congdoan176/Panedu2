@@ -40,22 +40,29 @@ public class CoursesController {
 			  HashMap<String, String> hashMap = new HashMap<>();
 			  hashMap.put("id", document.getId());
 			  listId.add(hashMap);
-			  
-			  ApiFuture<QuerySnapshot> query1 = db.collection("categoriedu/" + listId + "/coursedu").get();;
-				List<QueryDocumentSnapshot> document2 = query1.get().getDocuments();
-				List<HashMap<String, String>> listCourse = new ArrayList<>();
-				for (QueryDocumentSnapshot courses : document2) {
-					HashMap<String, String> hashMap2 = new HashMap<>();
-					  Course course = courses.toObject(Course.class);
-					  hashMap2.put("id", courses.getId());
-					  hashMap2.put("urlimg", course.getUrlimg());
-					  hashMap2.put("teacher", course.getTeacher());
-					  hashMap2.put("money", course.getMoney());
-					  hashMap2.put("description", course.getDescription());
-					  listCourse.add(hashMap2);
+			  for (HashMap<String, String> idDocument : listId) {
+				  String id = idDocument.get(listId);
+					ApiFuture<QuerySnapshot> query1 = db.collection("categoriedu/" + id + "/coursedu").get();
+					List<QueryDocumentSnapshot> document2 = query1.get().getDocuments();
+					List<HashMap<String, String>> listCourse = new ArrayList<>();
+					
+					  for(DocumentSnapshot document3 : document2) {
+						  
+						  HashMap<String, String> hashMap3 = new HashMap<>();
+						  
+						  Course course = document3.toObject(Course.class);
+						  
+						  hashMap3.put("id", document3.getId());
+						  hashMap3.put("urlimg", course.getUrlimg());
+						  hashMap3.put("teacher", course.getTeacher());
+						  hashMap3.put("money", course.getMoney());
+						  hashMap3.put("description", course.getDescription());
+						  listCourse.add(hashMap3);
+					  }
+					  model.addAttribute("listCourse",listCourse );
+					  LOGGER.info("=========: " + idDocument.get(listId));
 				}
-				model.addAttribute("listCourse",listCourse );
-				LOGGER.info("=========: " + listCourse);
+				
 			}
 		model.addAttribute("listId",listId );
 		LOGGER.info("Course : " + listId);
