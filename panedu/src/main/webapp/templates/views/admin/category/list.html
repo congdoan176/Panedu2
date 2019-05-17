@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/admin}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="contentAdmin">
+		<div class="container-fluid">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">List Category</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+								<th>Name </th>
+									<th>Ảnh</th>
+									<th>Số lượng khóa học</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="category : ${listId}">
+									<td th:text="${category.id}"></td>
+									<td >
+										<img alt="" th:src="${category.urlimg}" width="50px" height="50px">
+									</td>
+									<td th:text="${category.totalCourse}"></td>
+									<td><a th:href=@{/c/{id}(id=${category.id})}>Edit</a>
+										| <a>Delete</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- @{c/edit/{url}(url=${category.url})} -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

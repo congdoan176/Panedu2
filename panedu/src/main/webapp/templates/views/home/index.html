@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/home}">
+<head>
+<title>Home</title>
+</head>
+
+<body>
+<div layout:fragment="content">	
+<h1>It's Work</h1>
+	<div th:each = "category : ${categories}"> 
+		<p th:text="${category.urlimg}"></p>
+	</div>
+</div>
+</body>
+</html>
