@@ -11,11 +11,11 @@
 			<div class="">
 				<h1 class="h4 text-gray-900 mb-4">Create an Category!</h1>
 			</div>
-			<form class="user" action="#" th:action="@{/addcou}"
-				th:object="${course}" method="post">
+			<form class="user"
+				th:each="course:${listCourse}" method="post">
 				<div class="col-sm-4 my-3">
 					<input type="text" class="form-control form-control-user"
-						name="id" placeholder="Ten khoa hoc....">
+						name="id" th:value = "${course.id}">
 				</div>
 				<div class="col-sm-4 my-3">
 					<span>Lua chon dung danh muc can them</span>
@@ -29,19 +29,19 @@
 				</div>
 				<div class="col-sm-4 my-3">
 					<input type="text" class="form-control form-control-user"
-						name="teacher" placeholder="Ten giao vien  ....">
+						name="teacher" th:value = "${course.teacher}">
 				</div>
 				<div class="col-sm-4 my-3">
 					<input type="text" class="form-control form-control-user"
-						name="money" placeholder="nhap gia tien cho khoa hoc ....">
+						name="money" th:value = "${course.money}">
+				</div>
+				<div class="col-sm-4 my-3">
+					<textarea type="text" class="form-control form-control-user"
+						name="description" th:value = "${course.description}">
 				</div>
 				<div class="col-sm-4 my-3">
 					<input type="text" class="form-control form-control-user"
-						name="description" placeholder="nhap noi dung mo ta cho khoa hoc....">
-				</div>
-				<div class="col-sm-4 my-3">
-					<input type="text" class="form-control form-control-user"
-						name="urlimg" placeholder="dat link anh cho khoa hoc....">
+						name="urlimg" th:value="${course.urlimg}">
 				</div>
 				<div class="col-sm-1 mb-3 mb-sm-0">
 					<input class="my-2 btn-user" type="submit" value="Add Courses">

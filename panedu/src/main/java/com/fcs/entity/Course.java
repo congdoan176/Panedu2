@@ -5,6 +5,7 @@ public class Course {
 	private String teacher;
 	private String money;	
 	private String description;
+	private String idColle;
 	
 	public String getUrlimg() {
 		return urlimg;
@@ -30,6 +31,11 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public String getIdColle() {
+		return idColle;
+	}
+	public void setIdColle(String idColle) {
+		this.idColle = idColle;
+	}
 	
 }

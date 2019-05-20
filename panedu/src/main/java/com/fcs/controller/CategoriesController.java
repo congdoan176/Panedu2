@@ -67,10 +67,6 @@ public class CategoriesController {
 		categories.put("urlimg", urlimg);
 		categories.put("id",id);
 		ApiFuture<WriteResult> document = db.collection("categoriedu").document(id).set(categories);
-		/*
-		 * ApiFuture<DocumentReference> addedDocRef =
-		 * db.collection("categoriedu").add(categories);
-		 */
 		serp.sendRedirect("/c");
 	}
 	@GetMapping(value = "/c/{id}")
@@ -81,7 +77,9 @@ public class CategoriesController {
 		List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 		List<HashMap<String, String>> listId = new ArrayList<>();
 		for (QueryDocumentSnapshot queryDocumentSnapshot : documents) {
+			
 			LOGGER.info(queryDocumentSnapshot.getId());
+			
 			if(queryDocumentSnapshot.getId().equals(id)) {
 				HashMap<String, String> hashMap = new HashMap<>();
 				  Category category = queryDocumentSnapshot.toObject(Category.class);
